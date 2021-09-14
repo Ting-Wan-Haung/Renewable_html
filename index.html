@@ -54,6 +54,9 @@
                                         <li>
                                             <a><router-link to="/setup_page">上下限設定</router-link></a>
                                         </li>
+                                        <li>
+                                            <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li>
@@ -151,6 +154,9 @@
                                         </li>
                                         <li>
                                             <a><router-link to="/setup_page">上下限設定</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -253,6 +259,9 @@
                                         </li>
                                         <li>
                                             <a><router-link to="/setup_page">上下限設定</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -369,6 +378,9 @@
                                         </li>
                                         <li>
                                             <a><router-link to="/setup_page">上下限設定</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -487,6 +499,9 @@
                                         <li>
                                             <a><router-link to="/setup_page">上下限設定</router-link></a>
                                         </li>
+                                        <li>
+                                            <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li>
@@ -602,6 +617,9 @@
                                         </li>
                                         <li>
                                             <a><router-link to="/setup_page">上下限設定</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -844,6 +862,9 @@
                                     <li>
                                         <a><router-link to="/setup_page">上下限設定</router-link></a>
                                     </li>
+                                    <li>
+                                        <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
+                                    </li>
                                 </ul>
                             </li>
                             <li>
@@ -984,6 +1005,9 @@
                                         <li>
                                             <a><router-link to="/setup_page">上下限設定</router-link></a>
                                         </li>
+                                        <li>
+                                            <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li>
@@ -1080,6 +1104,9 @@
                                     </li>
                                     <li>
                                         <a><router-link to="/setup_page">上下限設定</router-link></a>
+                                    </li>
+                                    <li>
+                                        <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
                                     </li>
                                 </ul>
                             </li>
@@ -1231,6 +1258,9 @@
                                         <li>
                                             <a><router-link to="/setup_page">上下限設定</router-link></a>
                                         </li>
+                                        <li>
+                                            <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li>
@@ -1274,7 +1304,7 @@
             </div>
             <div class="station_info">
                 <div class="info_title">
-                    <label>案場設備列表</label>
+                    <label>設備列表</label>
                     <div id="select_station_list">
                         <select id="station" class="select_option" v-model="input.S_Station_Name">
                             <option value="">案場地點</option>
@@ -1286,22 +1316,35 @@
                         </select>
                     </div>
                 </div>
-                <div class="info_content">
-                    <div class="info_facility">
-                        <div class="subtitle" v-if="content">
-                            <table>
-                                <tr>
-                                    <th>案場名稱</th>
-                                    <th>設備編號</th>
-                                    <th>狀態</th>
-                                    <th>創建時間</th>
-                                </tr>
-                                <tr v-for="item in facility_update">
-                                    <td>竹南</td>
-                                    <td>{{ item.S_Facility_Id }}</td>
-                                    <td>{{ item.I_Status }}</td>
-                                    <td>{{ item.DT_Time }}</td>
-                                </tr>
+                <div class="facility_container">
+                    <div class="facility_subcontent">
+                        <div class="facility_subtitle" v-if="content">
+                            <table id="facility_table">
+                                <thead>
+                                    <tr>
+                                        <th>案場名稱</th>
+                                        <th>設備編號</th>
+                                        <th>創建時間</th>
+                                        <th>狀態</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="item in facility_update">
+                                        <td>竹南</td>
+                                        <td>{{ item.S_Facility_Id }}</td>
+                                        <td>{{ item.DT_Time }}</td>
+                                        <td> 
+                                            <div class="py-3py-3 d-flex justify-content-center">
+                                                OFF
+                                                <label class="switch">
+                                                    <input type="checkbox" v-model="item.I_Status" @click="check_status(item)">
+                                                    <span class="slider"></span>
+                                                </label>
+                                                ON
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -1347,6 +1390,9 @@
                                     </li>
                                     <li>
                                         <a><router-link to="/setup_page">上下限設定</router-link></a>
+                                    </li>
+                                    <li>
+                                        <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
                                     </li>
                                 </ul>
                             </li>
@@ -1519,6 +1565,9 @@
                                     </li>
                                     <li>
                                         <a><router-link to="/setup_page">上下限設定</router-link></a>
+                                    </li>
+                                    <li>
+                                        <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
                                     </li>
                                 </ul>
                             </li>

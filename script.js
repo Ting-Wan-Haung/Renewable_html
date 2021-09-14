@@ -1496,6 +1496,8 @@ var Facility_status = {
                 S_Station_Id: 'Z101',
             },
             facility_update:[],
+            toggle:false,
+            status:{}
         }
     },
     methods: {
@@ -1546,6 +1548,19 @@ var Facility_status = {
                 this.classList.toggle("active");
                 });
         },
+        check_status(ckeck_item){
+            this.status = (JSON.parse(JSON.stringify(ckeck_item)));
+            const facility = {
+                S_Facility_Id:this.status.S_Facility_Id,
+                I_Status: this.status.I_Status
+            };
+            axios.post('http://122.116.217.115:6150/Station/Facility/Update/V1',facility)
+            .then(response=>{
+                console.log(response);
+            }).catch(err=>{
+                console.log(err);
+            })
+        }
     },
     mounted() {
         fetch('http://122.116.217.115:6150/Station/List/'+user_name+'/V1')
@@ -1557,8 +1572,6 @@ var Facility_status = {
         .catch(function(err){  
             console.log(err);
         })
-        // 页面加载完后显示当前时间
-        this.dealWithTime(new Date())
     },
     computed:{
         typeList(){
@@ -3552,7 +3565,6 @@ var Abnormal_management = {
                     return null 
                 }
         },
-
     },
 }
 
