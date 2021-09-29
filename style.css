@@ -1022,15 +1022,53 @@ input.editing {
   z-index: 1;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
 }
-
+/* #nav-toggle {
+  position: absolute;
+  left: 18px;
+  top: 22px;
+  cursor: pointer;
+  padding: 10px 35px 16px 0px;
+} */
+/* #nav-toggle span,
+#nav-toggle span:before,
+#nav-toggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 5px;
+  width: 35px;
+  background: #ffffff;
+  position: absolute;
+  display: block;
+  content: "";
+  transition: all 300ms ease-in-out;
+} */
+/* #nav-toggle span:before {
+  top: -10px;
+}
+#nav-toggle span:after {
+  bottom: -10px;
+}
+#nav-toggle.active span {
+  background-color: transparent;
+}
+#nav-toggle.active span:before,
+#nav-toggle.active span:after {
+  top: 0;
+} */
+/* #nav-toggle.active span:before {
+  transform: rotate(45deg);
+}
+#nav-toggle.active span:after {
+  transform: rotate(-45deg);
+} */
 /* Mobile navigation */
-.nav-mobile {
+/* .nav-mobile {
   display: none;
   position: absolute;
   top: 0;
   right: 0;
   width: 70px;
-}
+} */
 /*dropdown done*/
 .abnormal_header {
   display: flex;
@@ -1480,15 +1518,16 @@ input:checked + .slider:before {
     width: 150px;
     left: 25%;
   }
-  .nav-mobile {
+  /*.nav-mobile {
     display: block;
-  }
+  }  
   .nav_header {
     width: 100%;
   }
   .nav_header ul {
     display: none;
-  }
+  }*/
+
   .nav_header ul li {
     float: none;
   }
@@ -1496,13 +1535,10 @@ input:checked + .slider:before {
     padding: 15px;
     line-height: 20px;
   }
-  .nav_header ul li ul li a {
-    padding-left: 30px;
-  }
-
+  /*
   .nav-dropdown {
     position: static;
-  }
+  } */
   .logo_name {
     display: none;
   }
@@ -1545,47 +1581,8 @@ input:checked + .slider:before {
     height: auto;
   }
 }
-@media screen and (min-width: 799px) {
+/* @media screen and (min-width: 768px) {
   .nav-list {
     display: block !important;
   }
-}
-#nav-toggle {
-  position: absolute;
-  left: 18px;
-  top: 22px;
-  cursor: pointer;
-  padding: 10px 35px 16px 0px;
-}
-#nav-toggle span,
-#nav-toggle span:before,
-#nav-toggle span:after {
-  cursor: pointer;
-  border-radius: 1px;
-  height: 5px;
-  width: 35px;
-  background: #ffffff;
-  position: absolute;
-  display: block;
-  content: "";
-  transition: all 300ms ease-in-out;
-}
-#nav-toggle span:before {
-  top: -10px;
-}
-#nav-toggle span:after {
-  bottom: -10px;
-}
-#nav-toggle.active span {
-  background-color: transparent;
-}
-#nav-toggle.active span:before,
-#nav-toggle.active span:after {
-  top: 0;
-}
-#nav-toggle.active span:before {
-  transform: rotate(45deg);
-}
-#nav-toggle.active span:after {
-  transform: rotate(-45deg);
-}
+} */

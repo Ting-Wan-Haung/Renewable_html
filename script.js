@@ -40,19 +40,11 @@ var  Home_page = {
                 // Close one dropdown when selecting another
                 $(".nav_dropdown").not($(this).siblings()).hide();
                 e.stopPropagation();
-                });
-                // Clicking away from dropdown will remove the dropdown class
-                $("html").click(function () {
+            });
+            // Clicking away from dropdown will remove the dropdown class
+            $("html").click(function () {
                 $(".nav_dropdown").hide();
-                });
-                // Toggle open and close nav styles on click
-                $("#nav-toggle").click(function () {
-                $(".nav_header ul").slideToggle();
-                });
-                // Hamburger to X toggle
-                $("#nav-toggle").on("click", function () {
-                this.classList.toggle("active");
-                });
+            });
         }
         
     },
