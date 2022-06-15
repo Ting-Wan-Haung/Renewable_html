@@ -31,10 +31,12 @@
                     <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
                     <div class="nav_container">
                         <nav class="nav_header">
-                            <ul class="nav-list" @click="dropdown">
+                            <ul class="nav-list">
                                 <li>
-                                    <a><router-link to="/">首頁</router-link></a>
-                                  </li>
+                                    <router-link to="/">首頁</router-link>
+                                </li>
+                            </ul>
+                            <ul class="nav-list" @click="dropdown">
                                 <li>
                                     <a>案場列表</a>
                                     <ul class="nav_dropdown">
@@ -133,10 +135,12 @@
                     <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
                     <div class="nav_container">
                         <nav class="nav_header">
-                            <ul class="nav-list" @click="dropdown">
+                            <ul class="nav-list">
                                 <li>
-                                    <a><router-link to="/">首頁</router-link></a>
-                                  </li>
+                                    <router-link to="/">首頁</router-link>
+                                </li>
+                            </ul>
+                            <ul class="nav-list" @click="dropdown">
                                 <li>
                                     <a>案場列表</a>
                                     <ul class="nav_dropdown">
@@ -239,10 +243,12 @@
                     <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
                     <div class="nav_container">
                         <nav class="nav_header">
-                            <ul class="nav-list" @click="dropdown">
+                            <ul class="nav-list">
                                 <li>
-                                    <a><router-link to="/">首頁</router-link></a>
-                                  </li>
+                                    <router-link to="/">首頁</router-link>
+                                </li>
+                            </ul>
+                            <ul class="nav-list" @click="dropdown">
                                 <li>
                                     <a>案場列表</a>
                                     <ul class="nav_dropdown">
@@ -359,10 +365,12 @@
                     <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
                     <div class="nav_container">
                         <nav class="nav_header">
-                            <ul class="nav-list" @click="dropdown">
+                            <ul class="nav-list">
                                 <li>
-                                    <a><router-link to="/">首頁</router-link></a>
-                                  </li>
+                                    <router-link to="/">首頁</router-link>
+                                </li>
+                            </ul>
+                            <ul class="nav-list" @click="dropdown">
                                 <li>
                                     <a>案場列表</a>
                                     <ul class="nav_dropdown">
@@ -480,10 +488,12 @@
                     <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
                     <div class="nav_container">
                         <nav class="nav_header">
-                            <ul class="nav-list" @click="dropdown">
+                            <ul class="nav-list">
                                 <li>
-                                    <a><router-link to="/">首頁</router-link></a>
-                                  </li>
+                                    <router-link to="/">首頁</router-link>
+                                </li>
+                            </ul>
+                            <ul class="nav-list" @click="dropdown">
                                 <li>
                                     <a>案場列表</a>
                                     <ul class="nav_dropdown">
@@ -600,10 +610,12 @@
                     <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
                     <div class="nav_container">
                         <nav class="nav_header">
-                            <ul class="nav-list" @click="dropdown">
+                            <ul class="nav-list">
                                 <li>
-                                    <a><router-link to="/">首頁</router-link></a>
-                                  </li>
+                                    <router-link to="/">首頁</router-link>
+                                </li>
+                            </ul>
+                            <ul class="nav-list" @click="dropdown">
                                 <li>
                                     <a>案場列表</a>
                                     <ul class="nav_dropdown">
@@ -831,73 +843,75 @@
    </template>
    <template id="report_page">
        <div>
-        <section class="navigation">
-            <div class="banner">
-                <div class="banner_icon">
-                    <div class="logo_img">
-                        <router-link to="/"><img src="./img/台科logo-02.png" id="ntust_logo"></router-link>
+            <section class="navigation">
+                <div class="banner">
+                    <div class="banner_icon">
+                        <div class="logo_img">
+                            <router-link to="/"><img src="./img/台科logo-02.png" id="ntust_logo"></router-link>
+                        </div>
+                        <div class="logo_name">
+                            <label>NTUST Renewable of Energy</label>
+                        </div>
                     </div>
-                    <div class="logo_name">
-                        <label>NTUST Renewable of Energy</label>
-                    </div>
-                </div>
-                <input type="checkbox" id="menu_control">
-                <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
-                <div class="nav_container">
-                    <nav class="nav_header">
-                        <ul class="nav-list" @click="dropdown">
-                            <li>
-                                <a><router-link to="/">首頁</router-link></a>
-                              </li>
-                            <li>
-                                <a>案場列表</a>
-                                <ul class="nav_dropdown">
-                                    <li>
-                                        <a><router-link to="/station_list">案場及設備資訊</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="/station_apply_page">新增案場</router-link></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a>設定</a>
-                                <ul class="nav_dropdown">
-                                    <li>
-                                        <a><router-link to="/profile_page">使用者設定</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="/setup_page">上下限設定</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a>管理平台</a>
-                                <ul class="nav_dropdown">
-                                    <li>
-                                        <a><router-link to="/monitor">案場監控</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="monitor/report">報表</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="/abnormal_management">異常管理</router-link></a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <input type="checkbox" id="menu_control">
+                    <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
+                    <div class="nav_container">
+                        <nav class="nav_header">
+                            <ul class="nav-list">
+                                <li>
+                                    <router-link to="/">首頁</router-link>
+                                </li>
+                            </ul>
+                            <ul class="nav-list" @click="dropdown">
+                                <li>
+                                    <a>案場列表</a>
+                                    <ul class="nav_dropdown">
+                                        <li>
+                                            <a><router-link to="/station_list">案場及設備資訊</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/station_apply_page">新增案場</router-link></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>設定</a>
+                                    <ul class="nav_dropdown">
+                                        <li>
+                                            <a><router-link to="/profile_page">使用者設定</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/setup_page">上下限設定</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>管理平台</a>
+                                    <ul class="nav_dropdown">
+                                        <li>
+                                            <a><router-link to="/monitor">案場監控</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="monitor/report">報表</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/abnormal_management">異常管理</router-link></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            
                         
-                    
-                      </nav>  
+                        </nav>  
+                    </div>
+                    <div class="address_card_icon">
+                        <i class="fas fa-address-card" id="icon" @click="pop_little_window()"></i>
+                    </div>
                 </div>
-                <div class="address_card_icon">
-                    <i class="fas fa-address-card" id="icon" @click="pop_little_window()"></i>
-                </div>
-            </div>
-        </section>
+            </section>  
             <div id="pop_profile" style="visibility: hidden;">
                 <div class="user_icon">
                     <router-link to="/profile_page"><i class="fas fa-user-circle"></i></router-link>
@@ -953,24 +967,29 @@
                 <button class="btn_segmented_control"@click="month_report()">月</button>
                 <button class="btn_segmented_control"@click="Day_report()">日</button>
             </div>
-            <div class="chart">
-                <div class="chart_container">
-                    <span v-if="context"></span>
-                    <canvas id="chart_power"></canvas>
+            <div class="allchart">
+                <div class="chart">
+                    <div class="chart_container">
+                        <span v-if="context"></span>
+                        <canvas id="chart_power"></canvas>
+                    </div>
+                    <div class="chart_container">
+                        <span v-if="context"></span>
+                        <canvas id="chart_predict_power"></canvas>
+                    </div>
+                    <div class="chart_container">
+                        <canvas id="chart_pr"></canvas>
+                    </div>
                 </div>
-                <div class="chart_container">
-                    <canvas id="chart_pr"></canvas>
+                <div class="chart">
+                    <div class="chart_container">
+                        <canvas id="chart_ach"></canvas>
+                    </div>
+                    <div class="chart_container">
+                        <canvas id="chart_proper"></canvas>
+                    </div>
                 </div>
             </div>
-            <div class="chart">
-                <div class="chart_container">
-                    <canvas id="chart_ach"></canvas>
-                </div>
-                <div class="chart_container">
-                    <canvas id="chart_proper"></canvas>
-                </div>
-            </div>
-            
        </div>
    </template>
    <template id="station_list">
@@ -989,10 +1008,12 @@
                     <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
                     <div class="nav_container">
                         <nav class="nav_header">
-                            <ul class="nav-list" @click="dropdown">
+                            <ul class="nav-list">
                                 <li>
-                                    <a><router-link to="/">首頁</router-link></a>
-                                  </li>
+                                    <router-link to="/">首頁</router-link>
+                                </li>
+                            </ul>
+                            <ul class="nav-list" @click="dropdown">
                                 <li>
                                     <a>案場列表</a>
                                     <ul class="nav_dropdown">
@@ -1061,8 +1082,8 @@
                 <div id="station_list_data">
                     <div class="station_btn_sel">
                         <button id="station_data"class="station_btn" @click="station_content='station_data'">案場資訊 <i class="fas fa-arrow-circle-right"></i></button>
-                        <router-link to="/station_apply_page"><button id="machine_detail"class="station_btn">案場申請 <i class="fas fa-arrow-circle-right"></i></button></router-link>
                         <button id="machine_apply"class="station_btn" @click="station_content='machine_apply'">設備申請 <i class="fas fa-arrow-circle-right"></i></button>
+                        <router-link to="/station_apply_page"><button id="machine_detail"class="station_btn">案場申請 <i class="fas fa-arrow-circle-right"></i></button></router-link>
                     </div>
                 </div>
                 <div class="station_content_container">
@@ -1090,10 +1111,12 @@
                 <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
                 <div class="nav_container">
                     <nav class="nav_header">
-                        <ul class="nav-list" @click="dropdown">
+                        <ul class="nav-list">
                             <li>
-                                <a><router-link to="/">首頁</router-link></a>
-                              </li>
+                                <router-link to="/">首頁</router-link>
+                            </li>
+                        </ul>
+                        <ul class="nav-list" @click="dropdown">
                             <li>
                                 <a>案場列表</a>
                                 <ul class="nav_dropdown">
@@ -1230,73 +1253,75 @@
    </template>
    <template id="facility_status">
        <div>
-        <section class="navigation">
-            <div class="banner">
-                <div class="banner_icon">
-                    <div class="logo_img">
-                        <router-link to="/"><img src="./img/台科logo-02.png" id="ntust_logo"></router-link>
+            <section class="navigation">
+                <div class="banner">
+                    <div class="banner_icon">
+                        <div class="logo_img">
+                            <router-link to="/"><img src="./img/台科logo-02.png" id="ntust_logo"></router-link>
+                        </div>
+                        <div class="logo_name">
+                            <label>NTUST Renewable of Energy</label>
+                        </div>
                     </div>
-                    <div class="logo_name">
-                        <label>NTUST Renewable of Energy</label>
-                    </div>
-                </div>
-                <input type="checkbox" id="menu_control">
-                <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
-                <div class="nav_container">
-                    <nav class="nav_header">
-                        <ul class="nav-list" @click="dropdown">
-                            <li>
-                                <a><router-link to="/">首頁</router-link></a>
-                              </li>
-                            <li>
-                                <a>案場列表</a>
-                                <ul class="nav_dropdown">
-                                    <li>
-                                        <a><router-link to="/station_list">案場及設備資訊</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="/station_apply_page">新增案場</router-link></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a>設定</a>
-                                <ul class="nav_dropdown">
-                                    <li>
-                                        <a><router-link to="/profile_page">使用者設定</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="/setup_page">上下限設定</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a>管理平台</a>
-                                <ul class="nav_dropdown">
-                                    <li>
-                                        <a><router-link to="/monitor">案場監控</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="monitor/report">報表</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="/abnormal_management">異常管理</router-link></a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <input type="checkbox" id="menu_control">
+                    <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
+                    <div class="nav_container">
+                        <nav class="nav_header">
+                            <ul class="nav-list">
+                                <li>
+                                    <router-link to="/">首頁</router-link>
+                                </li>
+                            </ul>
+                            <ul class="nav-list" @click="dropdown">
+                                <li>
+                                    <a>案場列表</a>
+                                    <ul class="nav_dropdown">
+                                        <li>
+                                            <a><router-link to="/station_list">案場及設備資訊</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/station_apply_page">新增案場</router-link></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>設定</a>
+                                    <ul class="nav_dropdown">
+                                        <li>
+                                            <a><router-link to="/profile_page">使用者設定</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/setup_page">上下限設定</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>管理平台</a>
+                                    <ul class="nav_dropdown">
+                                        <li>
+                                            <a><router-link to="/monitor">案場監控</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="monitor/report">報表</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/abnormal_management">異常管理</router-link></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            
                         
-                    
-                      </nav>  
+                        </nav>  
+                    </div>
+                    <div class="address_card_icon">
+                        <i class="fas fa-address-card" id="icon" @click="pop_little_window()"></i>
+                    </div>
                 </div>
-                <div class="address_card_icon">
-                    <i class="fas fa-address-card" id="icon" @click="pop_little_window()"></i>
-                </div>
-            </div>
-        </section>
+            </section>
             <div id="pop_profile" style="visibility: hidden;">
                 <div class="user_icon">
                     <router-link to="/profile_page"><i class="fas fa-user-circle"></i></router-link>
@@ -1314,7 +1339,7 @@
             </div>
             <div class="station_info">
                 <div class="info_title">
-                    <label>設備列表</label>
+                    <label>案場設備列表</label>
                     <div id="select_station_list">
                         <select id="station" class="select_option" v-model="input.S_Station_Name">
                             <option value="">案場地點</option>
@@ -1378,10 +1403,12 @@
                 <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
                 <div class="nav_container">
                     <nav class="nav_header">
-                        <ul class="nav-list" @click="dropdown">
+                        <ul class="nav-list">
                             <li>
-                                <a><router-link to="/">首頁</router-link></a>
-                              </li>
+                                <router-link to="/">首頁</router-link>
+                            </li>
+                        </ul>
+                        <ul class="nav-list" @click="dropdown">
                             <li>
                                 <a>案場列表</a>
                                 <ul class="nav_dropdown">
@@ -1540,73 +1567,75 @@
    </template>
    <template id="abnormal_management">
        <div>
-        <section class="navigation">
-            <div class="banner">
-                <div class="banner_icon">
-                    <div class="logo_img">
-                        <router-link to="/"><img src="./img/台科logo-02.png" id="ntust_logo"></router-link>
+            <section class="navigation">
+                <div class="banner">
+                    <div class="banner_icon">
+                        <div class="logo_img">
+                            <router-link to="/"><img src="./img/台科logo-02.png" id="ntust_logo"></router-link>
+                        </div>
+                        <div class="logo_name">
+                            <label>NTUST Renewable of Energy</label>
+                        </div>
                     </div>
-                    <div class="logo_name">
-                        <label>NTUST Renewable of Energy</label>
-                    </div>
-                </div>
-                <input type="checkbox" id="menu_control">
-                <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
-                <div class="nav_container">
-                    <nav class="nav_header">
-                        <ul class="nav-list" @click="dropdown">
-                            <li>
-                                <a><router-link to="/">首頁</router-link></a>
-                              </li>
-                            <li>
-                                <a>案場列表</a>
-                                <ul class="nav_dropdown">
-                                    <li>
-                                        <a><router-link to="/station_list">案場及設備資訊</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="/station_apply_page">新增案場</router-link></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a>設定</a>
-                                <ul class="nav_dropdown">
-                                    <li>
-                                        <a><router-link to="/profile_page">使用者設定</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="/setup_page">上下限設定</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a>管理平台</a>
-                                <ul class="nav_dropdown">
-                                    <li>
-                                        <a><router-link to="/monitor">案場監控</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="monitor/report">報表</router-link></a>
-                                    </li>
-                                    <li>
-                                        <a><router-link to="/abnormal_management">異常管理</router-link></a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <input type="checkbox" id="menu_control">
+                    <div class="nav-mobile"><label id="nav-toggle"for="menu_control"><span></span></label></div>
+                    <div class="nav_container">
+                        <nav class="nav_header">
+                            <ul class="nav-list">
+                                <li>
+                                    <router-link to="/">首頁</router-link>
+                                </li>
+                            </ul>
+                            <ul class="nav-list" @click="dropdown">
+                                <li>
+                                    <a>案場列表</a>
+                                    <ul class="nav_dropdown">
+                                        <li>
+                                            <a><router-link to="/station_list">案場及設備資訊</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/station_apply_page">新增案場</router-link></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>設定</a>
+                                    <ul class="nav_dropdown">
+                                        <li>
+                                            <a><router-link to="/profile_page">使用者設定</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/setup_page">上下限設定</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/facility_status">設備狀態及更改</router-link></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>管理平台</a>
+                                    <ul class="nav_dropdown">
+                                        <li>
+                                            <a><router-link to="/monitor">案場監控</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="monitor/report">報表</router-link></a>
+                                        </li>
+                                        <li>
+                                            <a><router-link to="/abnormal_management">異常管理</router-link></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            
                         
-                    
-                      </nav>  
+                        </nav>  
+                    </div>
+                    <div class="address_card_icon">
+                        <i class="fas fa-address-card" id="icon" @click="pop_little_window()"></i>
+                    </div>
                 </div>
-                <div class="address_card_icon">
-                    <i class="fas fa-address-card" id="icon" @click="pop_little_window()"></i>
-                </div>
-            </div>
-        </section>
+            </section>
             <div id="pop_profile" style="visibility: hidden;">
                 <div class="user_icon">
                     <router-link to="/profile_page"><i class="fas fa-user-circle"></i></router-link>

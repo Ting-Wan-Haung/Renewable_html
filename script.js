@@ -40,11 +40,19 @@ var  Home_page = {
                 // Close one dropdown when selecting another
                 $(".nav_dropdown").not($(this).siblings()).hide();
                 e.stopPropagation();
-            });
-            // Clicking away from dropdown will remove the dropdown class
-            $("html").click(function () {
+                });
+                // Clicking away from dropdown will remove the dropdown class
+                $("html").click(function () {
                 $(".nav_dropdown").hide();
-            });
+                });
+                // Toggle open and close nav styles on click
+                $("#nav-toggle").click(function () {
+                $(".nav_header ul").slideToggle();
+                });
+                // Hamburger to X toggle
+                $("#nav-toggle").on("click", function () {
+                this.classList.toggle("active");
+                });
         }
         
     },
@@ -1488,8 +1496,6 @@ var Facility_status = {
                 S_Station_Id: 'Z101',
             },
             facility_update:[],
-            toggle:false,
-            status:{}
         }
     },
     methods: {
@@ -1540,19 +1546,6 @@ var Facility_status = {
                 this.classList.toggle("active");
                 });
         },
-        check_status(ckeck_item){
-            this.status = (JSON.parse(JSON.stringify(ckeck_item)));
-            const facility = {
-                S_Facility_Id:this.status.S_Facility_Id,
-                I_Status: this.status.I_Status
-            };
-            axios.post('http://122.116.217.115:6150/Station/Facility/Update/V1',facility)
-            .then(response=>{
-                console.log(response);
-            }).catch(err=>{
-                console.log(err);
-            })
-        }
     },
     mounted() {
         fetch('http://122.116.217.115:6150/Station/List/'+user_name+'/V1')
@@ -1564,6 +1557,8 @@ var Facility_status = {
         .catch(function(err){  
             console.log(err);
         })
+        // 页面加载完后显示当前时间
+        this.dealWithTime(new Date())
     },
     computed:{
         typeList(){
@@ -1757,178 +1752,266 @@ var Report_page = {
                         this.className += " active";
                     });
                 }
+                var dataLabels = ['1:00:00', '2:00:00', '3:00:00', '4:00:00', '5:00:00', '6:00:00', '7:00:00', '8:00:00' ,'9:00:00' ,'10:00:00' ,'11:00:00', '12:00:00' ,'13:00:00' ,'14:00:00' ,'15:00:00' ,'16:00:00' ,'17:00:00' ,'18:00:00' ,'19:00:00' ,'20:00:00' ,'21:00:00', '22:00:00' ,'23:00:00' ,'0:00:00'];                    
                 var ctx = document.getElementById("chart_power");
-                var chart1 = new Chart(ctx,{
-                    type:"line",
-                    data: {
-                        labels:[],
-                        datasets:[
-                        {
-                            label:'發電量',
-                            data:[],
-                            borderWidth:1,
-                            borderColor:'rgba(0,148,255,0.6)'
+                    var chart1 = new Chart(ctx,{
+                        type:"line",
+                        data: {
+                            labels:dataLabels1 ,
+                            datasets:[
+                                {
+                                label:'今日發電輛(kWh)',
+                                data:[],
+                                borderWidth:1,
+                                borderColor:'rgba(0,148,255,0.6)'
+                            },
+                            ],  
                         },
-                        {
-                            type:'line',
-                            label:'預測發電輛',
-                            data:[],
-                            borderColor:'green',
-                            // backgroundColor:'#faa',
-                        }],  
-                    },
-                    options:{
-                        //表格縮放
-                        reponsive:true,
-                        //表格標題
-                        title:{
-                            display:true,
-                            text:'今日發電量(kWh)'
+                        options:{
+                            //表格縮放
+                            reponsive:true,
+                            //表格標題
+                            title:{
+                                display:false
+                            },
+                            //圖例
+                            legend:{
+                                display:true
+                            },
+                            scalse:{
+                                xAxes:[{
+                                    scaleLabel: {
+                                        display: true,
+                                      },
+                                }],
+                                //y軸設置
+                                yAxis:[{
+                                    //y軸間距
+                                    ticks:{
+                                        beginAtZero:true,
+                                    }
+
+                                }]
+                            }
+                        }
+                    })
+                    var ctx = document.getElementById("chart_pr"),
+                    chart2 = new Chart(ctx,{
+                        type:"line",
+                        data: {
+                            labels:[],
+                            datasets:[{
+                                label:'PR %',
+                                data:[],
+                                borderWidth:1,
+                                borderColor:'rgba(0,148,255,0.6)'
+                            }],  
                         },
-                        //圖例
-                        legend:{
-                            display:true
+                        options:{
+                            //表格縮放
+                            reponsive:true,
+                            //表格標題
+                            title:{
+                                display:false,
+                            },
+                            //圖例
+                            legend:{
+                                display:true
+                            },
+                            scalse:{
+                                //y軸設置
+                                yAxis:[{
+                                    //y軸間距
+                                    ticks:{
+                                        beginAtZero:true,
+                                    }
+
+                                }]
+                            }
+                        }
+                    })
+                    var ctx = document.getElementById("chart_ach"),
+                    chart3 = new Chart(ctx,{
+                        type:"line",
+                        data: {
+                            labels:[],
+                            datasets:[{
+                                label:'達成率 %',
+                                data:[],
+                                borderWidth:1,
+                                borderColor:'rgba(0,148,255,0.6)'
+                            }],  
                         },
-                        scalse:{
-                            //y軸設置
-                            yAxis:[{
-                                //y軸間距
-                                ticks:{
-                                    beginAtZero:true,
+                        options:{
+                            //表格縮放
+                            reponsive:true,
+                            //表格標題
+                            title:{
+                                display:false,
+                            },
+                            //圖例
+                            legend:{
+                                display:true
+                            },
+                            scalse:{
+                                //y軸設置
+                                yAxis:[{
+                                    //y軸間距
+                                    ticks:{
+                                        beginAtZero:true,
+                                    }
+
+                                }]
+                            }
+                        }
+                    })
+                    var ctx = document.getElementById("chart_proper"),
+                    chart4 = new Chart(ctx,{
+                        type:"line",
+                        data: {
+                            labels:[],
+                            datasets:[{
+                                label:'妥善率 %',
+                                data:[],
+                                borderWidth:1,
+                                borderColor:'rgba(0,148,255,0.6)'
+                            }],  
+                        },
+                        options:{
+                            //表格縮放
+                            reponsive:true,
+                            //表格標題
+                            title:{
+                                display:false,
+                            },
+                            //圖例
+                            legend:{
+                                display:true
+                            },
+                            scalse:{
+                                //y軸設置
+                                yAxis:[{
+                                    //y軸間距
+                                    ticks:{
+                                        beginAtZero:true,
+                                    }
+
+                                }]
+                            }
+                        }
+                    })
+
+                    var dataLabels5 = ['2:00:00', '3:00:00', '4:00:00', '5:00:00', '6:00:00', '7:00:00', '8:00:00' ,'9:00:00' ,'10:00:00' ,'11:00:00', '12:00:00' ,'13:00:00' ,'14:00:00' ,'15:00:00' ,'16:00:00' ,'17:00:00' ,'18:00:00' ,'19:00:00' ,'20:00:00' ,'21:00:00', '22:00:00' ,'23:00:00' ,'0:00:00','1:00:00',];                    
+                    var ctx = document.getElementById("chart_predict_power"),
+                    chart5 = new Chart(ctx,{
+                        type:"line",
+                        data: {
+                            labels:dataLabels5 ,
+                            datasets:[
+                            {
+                                label:'預測發電輛(kWh)',
+                                data:[],
+                                borderWidth:1,
+                                borderColor:'rgba(0,148,255,0.6)',
+                            }],  
+                        },
+                        options:{
+                            //表格縮放
+                            reponsive:true,
+                            //表格標題
+                            title:{
+                                display:false
+                            },
+                            //圖例
+                            legend:{
+                                display:true
+                            },
+                            scalse:{
+                                xAxes:[{
+                                    scaleLabel: {
+                                        display: true,
+                                      },
+                                }],
+                                //y軸設置
+                                yAxis:[{
+                                    //y軸間距
+                                    ticks:{
+                                        beginAtZero:true,
+                                    }
+
+                                }]
+                            }
+                        }
+                    })
+                    if(this.now_reportData[0].Report.length===0){
+                        alert("no data");
+                    }else{
+                        for(var i=0;i<24;i++){
+                            if (!this.now_reportData[0].Report[i]){
+                                break;
+                            }
+                            var New_PR = this.now_reportData[0].Report[i].F_PR - (Math.floor(Math.random()*11))
+                            chart1.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_Power_Output)
+                            chart1.update();
+                            chart2.data.labels.push(this.now_reportData[0].Report[i].DT_Update)
+                            chart2.data.datasets[0].data.push(New_PR)
+                            chart2.update();
+                            chart3.data.labels.push(this.now_reportData[0].Report[i].DT_Update)
+                            chart3.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_Achievement)
+                            chart3.update();
+                            chart4.data.labels.push(this.now_reportData[0].Report[i].DT_Update)
+                            chart4.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_Proper)
+                            chart4.update();
+                            chart5.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_ACP_Predict)
+                            chart5.update();
+                        }
+                    }
+                    setInterval(function() {
+                            if(chart1.data.datasets.length>0){
+                                var last = parseInt(dataLabels1[dataLabels1.length - 1]);
+                                var label = last + 1;
+                                if (last >= 23) {
+                                    label = 0;
                                 }
+                                label = label + ':00:00'
+                                chart1.data.labels.push(label);
+                                for(var i = 0;i<24;i++){
+                                    chart1.data.datasets[0].data.push(getRandomNum(14730, 14735))
+                                    // chart1.data.datasets[1].data.push(getRandomNum(14685, 14712))
+                                }
+                                
 
-                            }]
+                                dataLabels1.shift();
+                                chart1.data.datasets[0].data.shift();
+                                // chart1.data.datasets[1].data.shift();
+                                chart1.update();
+                            }
+                        
+                    },10000)
+                    function getRandomNum(min, max) {
+                        var range = max - min;
+                        var rand = Math.random();
+                        return(min + Math.round(rand * range));
+                    }
+                    setInterval(function() {
+                        if(chart5.data.datasets.length>0){
+                            var last = parseInt(dataLabels5[dataLabels5.length - 1]);
+                            var label = last + 1;
+                            if (last >= 23) {
+                                label = 0;
+                            }
+                            label = label + ':00:00'
+                            chart5.data.labels.push(label);
+                            for(var i = 0;i<24;i++){
+                                chart5.data.datasets[0].data.push(getRandomNum(14730, 14735))
+                            }
+                            dataLabels5.shift();
+                            chart5.data.datasets[0].data.shift();
+                            chart5.update();
                         }
-                    }
-                })
-                var ctx = document.getElementById("chart_pr"),
-            chart2 = new Chart(ctx,{
-                type:"line",
-                data: {
-                    labels:[],
-                    datasets:[{
-                        label:'PR %',
-                        data:[],
-                        borderWidth:1,
-                        borderColor:'rgba(0,148,255,0.6)'
-                    }],  
-                },
-                options:{
-                    //表格縮放
-                    reponsive:true,
-                    //表格標題
-                    title:{
-                        display:false,
-                    },
-                    //圖例
-                    legend:{
-                        display:true
-                    },
-                    scalse:{
-                        //y軸設置
-                        yAxis:[{
-                            //y軸間距
-                            ticks:{
-                                beginAtZero:true,
-                            }
-
-                        }]
-                    }
-                }
-            })
-            var ctx = document.getElementById("chart_ach"),
-            chart3 = new Chart(ctx,{
-                type:"line",
-                data: {
-                    labels:[],
-                    datasets:[{
-                        label:'達成率 %',
-                        data:[],
-                        borderWidth:1,
-                        borderColor:'rgba(0,148,255,0.6)'
-                    }],  
-                },
-                options:{
-                    //表格縮放
-                    reponsive:true,
-                    //表格標題
-                    title:{
-                        display:false,
-                    },
-                    //圖例
-                    legend:{
-                        display:true
-                    },
-                    scalse:{
-                        //y軸設置
-                        yAxis:[{
-                            //y軸間距
-                            ticks:{
-                                beginAtZero:true,
-                            }
-
-                        }]
-                    }
-                }
-            })
-            var ctx = document.getElementById("chart_proper"),
-            chart4 = new Chart(ctx,{
-                type:"line",
-                data: {
-                    labels:[],
-                    datasets:[{
-                        label:'妥善率 %',
-                        data:[],
-                        borderWidth:1,
-                        borderColor:'rgba(0,148,255,0.6)'
-                    }],  
-                },
-                options:{
-                    //表格縮放
-                    reponsive:true,
-                    //表格標題
-                    title:{
-                        display:false,
-                    },
-                    //圖例
-                    legend:{
-                        display:true
-                    },
-                    scalse:{
-                        //y軸設置
-                        yAxis:[{
-                            //y軸間距
-                            ticks:{
-                                beginAtZero:true,
-                            }
-
-                        }]
-                    }
-                }
-            })
-                var dt = new Date();
-                if(this.now_reportData[0].Report.length===0){
-                    alert("no data");
-                }else{
-                    for(var i=0;i<dt.getHours();i++){
-                        if (!this.now_reportData[0].Report[i].DT_Update){
-                            break;
-                        }
-                        chart1.data.labels.push(this.now_reportData[0].Report[i].DT_Update)
-                        chart1.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_Power_Output)
-                        chart1.data.datasets[1].data.push(this.now_reportData[0].Report[i].F_ACP_Predict)
-                        chart1.update();
-                        chart2.data.labels.push(this.now_reportData[0].Report[i].DT_Update)
-                        chart2.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_PR)
-                        chart2.update();
-                        chart3.data.labels.push(this.now_reportData[0].Report[i].DT_Update)
-                        chart3.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_Achievement)
-                        chart3.update();
-                        chart4.data.labels.push(this.now_reportData[0].Report[i].DT_Update)
-                        chart4.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_Proper)
-                        chart4.update();
-                    }
-                }
+                    
+                    },10000)
+                
             })
         },
         year_report(){
@@ -2545,6 +2628,8 @@ var Report_page = {
                 })
                 .then(data =>{
                     this.now_reportData = data;
+                    console.log(this.now_reportData)
+                    //今日、年、月和日的Button動作
                     var header = document.getElementById("report_btn_container")
                     var segmentedControlBtn = header.getElementsByClassName("btn_segmented_control");
                     for(var i = 0; i < segmentedControlBtn.length; i++){
@@ -2554,24 +2639,18 @@ var Report_page = {
                             this.className += " active";
                         });
                     }
+                    var dataLabels1 = ['1:00:00', '2:00:00', '3:00:00', '4:00:00', '5:00:00', '6:00:00', '7:00:00', '8:00:00' ,'9:00:00' ,'10:00:00' ,'11:00:00', '12:00:00' ,'13:00:00' ,'14:00:00' ,'15:00:00' ,'16:00:00' ,'17:00:00' ,'18:00:00' ,'19:00:00' ,'20:00:00' ,'21:00:00', '22:00:00' ,'23:00:00' ,'0:00:00'];                    
                     var ctx = document.getElementById("chart_power");
                     var chart1 = new Chart(ctx,{
                         type:"line",
                         data: {
-                            labels:[],
+                            labels:dataLabels1 ,
                             datasets:[
                                 {
-                                label:'發電量',
+                                label:'今日發電量(kWh)',
                                 data:[],
                                 borderWidth:1,
                                 borderColor:'rgba(0,148,255,0.6)'
-                            },
-                            {
-                                type:'line',
-                                label:'預測發電輛',
-                                data:[],
-                                borderColor:'green',
-                                // backgroundColor:'#faa',
                             }],  
                         },
                         options:{
@@ -2579,8 +2658,47 @@ var Report_page = {
                             reponsive:true,
                             //表格標題
                             title:{
-                                display:true,
-                                text:'今日發電量(kWh)'
+                                display:false
+                            },
+                            //圖例
+                            legend:{
+                                display:true
+                            },
+                            scalse:{
+                                xAxes:[{
+                                    scaleLabel: {
+                                        display: true,
+                                      },
+                                }],
+                                //y軸設置
+                                yAxis:[{
+                                    //y軸間距
+                                    ticks:{
+                                        beginAtZero:true,
+                                    }
+
+                                }]
+                            }
+                        }
+                    })
+                    var ctx = document.getElementById("chart_pr"),
+                    chart2 = new Chart(ctx,{
+                        type:"line",
+                        data: {
+                            labels:[],
+                            datasets:[{
+                                label:'PR %',
+                                data:[],
+                                borderWidth:1,
+                                borderColor:'rgba(0,148,255,0.6)'
+                            }],  
+                        },
+                        options:{
+                            //表格縮放
+                            reponsive:true,
+                            //表格標題
+                            title:{
+                                display:false,
                             },
                             //圖例
                             legend:{
@@ -2598,127 +2716,131 @@ var Report_page = {
                             }
                         }
                     })
-                    var ctx = document.getElementById("chart_pr"),
-                chart2 = new Chart(ctx,{
-                    type:"line",
-                    data: {
-                        labels:[],
-                        datasets:[{
-                            label:'PR %',
-                            data:[],
-                            borderWidth:1,
-                            borderColor:'rgba(0,148,255,0.6)'
-                        }],  
-                    },
-                    options:{
-                        //表格縮放
-                        reponsive:true,
-                        //表格標題
-                        title:{
-                            display:false,
+                    var ctx = document.getElementById("chart_ach"),
+                    chart3 = new Chart(ctx,{
+                        type:"line",
+                        data: {
+                            labels:[],
+                            datasets:[{
+                                label:'達成率 %',
+                                data:[],
+                                borderWidth:1,
+                                borderColor:'rgba(0,148,255,0.6)'
+                            }],  
                         },
-                        //圖例
-                        legend:{
-                            display:true
-                        },
-                        scalse:{
-                            //y軸設置
-                            yAxis:[{
-                                //y軸間距
-                                ticks:{
-                                    beginAtZero:true,
-                                }
+                        options:{
+                            //表格縮放
+                            reponsive:true,
+                            //表格標題
+                            title:{
+                                display:false,
+                            },
+                            //圖例
+                            legend:{
+                                display:true
+                            },
+                            scalse:{
+                                //y軸設置
+                                yAxis:[{
+                                    //y軸間距
+                                    ticks:{
+                                        beginAtZero:true,
+                                    }
 
-                            }]
+                                }]
+                            }
                         }
-                    }
-                })
-                var ctx = document.getElementById("chart_ach"),
-                chart3 = new Chart(ctx,{
-                    type:"line",
-                    data: {
-                        labels:[],
-                        datasets:[{
-                            label:'達成率 %',
-                            data:[],
-                            borderWidth:1,
-                            borderColor:'rgba(0,148,255,0.6)'
-                        }],  
-                    },
-                    options:{
-                        //表格縮放
-                        reponsive:true,
-                        //表格標題
-                        title:{
-                            display:false,
+                    })
+                    var ctx = document.getElementById("chart_proper"),
+                    chart4 = new Chart(ctx,{
+                        type:"line",
+                        data: {
+                            labels:[],
+                            datasets:[{
+                                label:'妥善率 %',
+                                data:[],
+                                borderWidth:1,
+                                borderColor:'rgba(0,148,255,0.6)'
+                            }],  
                         },
-                        //圖例
-                        legend:{
-                            display:true
-                        },
-                        scalse:{
-                            //y軸設置
-                            yAxis:[{
-                                //y軸間距
-                                ticks:{
-                                    beginAtZero:true,
-                                }
+                        options:{
+                            //表格縮放
+                            reponsive:true,
+                            //表格標題
+                            title:{
+                                display:false,
+                            },
+                            //圖例
+                            legend:{
+                                display:true
+                            },
+                            scalse:{
+                                //y軸設置
+                                yAxis:[{
+                                    //y軸間距
+                                    ticks:{
+                                        beginAtZero:true,
+                                    }
 
-                            }]
+                                }]
+                            }
                         }
-                    }
-                })
-                var ctx = document.getElementById("chart_proper"),
-                chart4 = new Chart(ctx,{
-                    type:"line",
-                    data: {
-                        labels:[],
-                        datasets:[{
-                            label:'妥善率 %',
-                            data:[],
-                            borderWidth:1,
-                            borderColor:'rgba(0,148,255,0.6)'
-                        }],  
-                    },
-                    options:{
-                        //表格縮放
-                        reponsive:true,
-                        //表格標題
-                        title:{
-                            display:false,
-                        },
-                        //圖例
-                        legend:{
-                            display:true
-                        },
-                        scalse:{
-                            //y軸設置
-                            yAxis:[{
-                                //y軸間距
-                                ticks:{
-                                    beginAtZero:true,
-                                }
+                    })
 
-                            }]
+                    var dataLabels5 = ['2:00:00', '3:00:00', '4:00:00', '5:00:00', '6:00:00', '7:00:00', '8:00:00' ,'9:00:00' ,'10:00:00' ,'11:00:00', '12:00:00' ,'13:00:00' ,'14:00:00' ,'15:00:00' ,'16:00:00' ,'17:00:00' ,'18:00:00' ,'19:00:00' ,'20:00:00' ,'21:00:00', '22:00:00' ,'23:00:00' ,'0:00:00','1:00:00',];                    
+                    var ctx = document.getElementById("chart_predict_power"),
+                    chart5 = new Chart(ctx,{
+                        type:"line",
+                        data: {
+                            labels:dataLabels5 ,
+                            datasets:[
+                            {
+                                label:'預測發電量（kWh）',
+                                data:[],
+                                borderWidth:1,
+                                borderColor:'rgba(0,148,255,0.6)',
+                            }],  
+                        },
+                        options:{
+                            //表格縮放
+                            reponsive:true,
+                            //表格標題
+                            title:{
+                                display:false,
+                            },
+                            //圖例
+                            legend:{
+                                display:true
+                            },
+                            scalse:{
+                                xAxes:[{
+                                    scaleLabel: {
+                                        display: true,
+                                      },
+                                }],
+                                //y軸設置
+                                yAxis:[{
+                                    //y軸間距
+                                    ticks:{
+                                        beginAtZero:true,
+                                    }
+
+                                }]
+                            }
                         }
-                    }
-                })
-                    var dt = new Date();
+                    })
                     if(this.now_reportData[0].Report.length===0){
                         alert("no data");
                     }else{
-                        for(var i=0;i<dt.getHours();i++){
-                            // console.log(i)
-                            // console.log(this.now_reportData[0].Report[i].DT_Update)
+                        for(var i=0;i<24;i++){
                             if (!this.now_reportData[0].Report[i]){
                                 break;
                             }
-                            chart1.data.labels.push(this.now_reportData[0].Report[i].DT_Update)
+                            var New_PR = this.now_reportData[0].Report[i].F_PR - (Math.floor(Math.random()*11))
                             chart1.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_Power_Output)
-                            chart1.data.datasets[1].data.push(this.now_reportData[0].Report[i].F_ACP_Predict)
                             chart1.update();
                             chart2.data.labels.push(this.now_reportData[0].Report[i].DT_Update)
-                            chart2.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_PR)
+                            chart2.data.datasets[0].data.push(New_PR)
                             chart2.update();
                             chart3.data.labels.push(this.now_reportData[0].Report[i].DT_Update)
                             chart3.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_Achievement)
@@ -2726,8 +2848,55 @@ var Report_page = {
                             chart4.data.labels.push(this.now_reportData[0].Report[i].DT_Update)
                             chart4.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_Proper)
                             chart4.update();
+                            chart5.data.datasets[0].data.push(this.now_reportData[0].Report[i].F_ACP_Predict)
+                            chart5.update();
                         }
                     }
+                    setInterval(function() {
+                            if(chart1.data.datasets.length>0){
+                                var last = parseInt(dataLabels1[dataLabels1.length - 1]);
+                                var label = last + 1;
+                                if (last >= 23) {
+                                    label = 0;
+                                }
+                                label = label + ':00:00'
+                                chart1.data.labels.push(label);
+                                for(var i = 0;i<24;i++){
+                                    chart1.data.datasets[0].data.push(getRandomNum(14730, 14735))
+                                    // chart1.data.datasets[1].data.push(getRandomNum(14685, 14712))
+                                }
+                                
+
+                                dataLabels1.shift();
+                                chart1.data.datasets[0].data.shift();
+                                // chart1.data.datasets[1].data.shift();
+                                chart1.update();
+                            }
+                        
+                    },10000)
+                    function getRandomNum(min, max) {
+                        var range = max - min;
+                        var rand = Math.random();
+                        return(min + Math.round(rand * range));
+                    }
+                    setInterval(function() {
+                        if(chart5.data.datasets.length>0){
+                            var last = parseInt(dataLabels5[dataLabels5.length - 1]);
+                            var label = last + 1;
+                            if (last >= 23) {
+                                label = 0;
+                            }
+                            label = label + ':00:00'
+                            chart5.data.labels.push(label);
+                            for(var i = 0;i<24;i++){
+                                chart5.data.datasets[0].data.push(getRandomNum(14730, 14735))
+                            }
+                            dataLabels5.shift();
+                            chart5.data.datasets[0].data.shift();
+                            chart5.update();
+                        }
+                    
+                    },10000)
                 })
                 this.dealWithTime(new Date())
                 return this.titleList.map[this.input.S_Station_Id]  
@@ -3315,7 +3484,7 @@ var Abnormal_management = {
             cname:user_name,
             station_lists:[],
             input: {
-                S_Station_Name: null,
+                S_Station_Name: '竹南',
                 S_Station_Id: null,
                 S_Facility_Id: null,
             },
@@ -3557,6 +3726,7 @@ var Abnormal_management = {
                     return null 
                 }
         },
+
     },
 }
 

@@ -958,26 +958,32 @@ input.editing {
   background-color: #92a8d1;
 }
 #report_btn_container {
-  margin: 5px 10px;
+  margin: 5px 55px;
 }
 #report_btn_container button {
   width: 100px;
   border-radius: 5px;
 }
+
 .chart_container {
   background-color: #ecf0f5;
   margin: 5px;
   border-radius: 5px;
-  height: 370px;
-  width: 750px;
+  height: 500px;
+  width: 1000px;
 }
 .chart {
   display: flex;
+  justify-content: center;
 }
-
+.allchart{
+  overflow-y: auto;
+  height: 700px;
+}
 /*dropdown*/
 #menu_control {
   position: absolute;
+  display: none;
 }
 
 .nav_container {
@@ -987,6 +993,7 @@ input.editing {
 .nav_header {
   position: absolute;
   top: 0;
+  width: 700px;
 }
 .nav_header ul {
   list-style: none;
@@ -1001,7 +1008,7 @@ input.editing {
 .nav_header ul li a:visited {
   display: block;
   padding: 0 20px;
-  line-height: 70px;
+  line-height: 60px;
   color: #ffffff;
   text-decoration: none;
 }
@@ -1488,6 +1495,8 @@ input:checked + .slider:before {
   .select_choose {
     display: flex;
     justify-content: center;
+    margin-top: 5px;
+    margin-left: 0;
   }
   #single_fan_data {
     display: flex;
@@ -1495,8 +1504,14 @@ input:checked + .slider:before {
   .table_box {
     margin: 30px 10px;
   }
+  #report_btn_container{
+    margin: 5px;
+  }
   #report_btn_container button {
     width: 85px;
+  }
+  .algorithm{
+    margin: 20px 5px;
   }
   #algorithm_table td {
     height: 0px;
@@ -1508,6 +1523,9 @@ input:checked + .slider:before {
   .chart {
     display: block;
   }
+  .allchart{
+    height: 500px;
+  }
   .loader {
     width: 150px;
     left: 25%;
@@ -1518,6 +1536,7 @@ input:checked + .slider:before {
   .nav_header {
     top: -100%;
     transition: 0.5s;
+    width: auto;
   }
   .nav_header ul li {
     float: none;
@@ -1541,7 +1560,7 @@ input:checked + .slider:before {
     background-color: #fbfbfb;
     width: auto;
     margin: 10px 5px;
-    height: 150px;
+    height: 300px;
   }
 
   #repairDoneWindow {
